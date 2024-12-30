@@ -6,10 +6,13 @@ import org.testng.annotations.Test;
 
 public class WeatherComparisonTests {
 
+    WeatherApi weatherApi = new WeatherApi();
+
     @Test
     public void testTemperatureComparison() throws InterruptedException {
+
+        double apiTemperature = weatherApi.getTemperatureFromWeatherAPI();
         double seleniumTemperature = WeatherPage.getTemperatureFromWeatherUI();
-        double apiTemperature = WeatherApi.getTemperatureFromWeatherAPI();
         double difference = Math.abs(seleniumTemperature - apiTemperature);
         double maxAllowedDifference = 10.0;
 

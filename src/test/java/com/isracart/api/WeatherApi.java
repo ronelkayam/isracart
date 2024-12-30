@@ -6,18 +6,24 @@ import io.restassured.response.Response;
 
 public class WeatherApi {
 
-    private static final String BASE_API_URL = "https://api.weatherapi.com/v1/current.json?key=";
-    private static final String API_KEY = Config.getProperty("WEATHER_API_KEY");
-    private static final String ZIP_CODE = Config.getProperty("ZIP_CODE");
+    Config config = new Config();
+    private static String base_api_url;
+    private static String api_key;
+    private static String zip_code;
 
+    public WeatherApi() {
+        this.base_api_url = config.getProperty("WEATHER_API_URL");
+        this.api_key = config.getProperty("WEATHER_API_KEY");
+        this.zip_code = config.getProperty("ZIP_CODE");
+        ;
+    }
 
     public static double getTemperatureFromWeatherAPI() {
-        String url = BASE_API_URL + API_KEY + "&q=" + ZIP_CODE;
+        String url = base_api_url + "?key=" + api_key + "&q=" + zip_code;
 
         Response response = RestAssured.get(url);
 
-        double temperature = response.jsonPath().getDouble("current.temp_f");
-        return temperature;
+        return response.jsonPath().getDouble("current.temp_f");
     }
 
 }
