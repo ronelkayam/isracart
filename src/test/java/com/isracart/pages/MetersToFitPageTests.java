@@ -7,10 +7,11 @@ import org.testng.annotations.Test;
 
 public class MetersToFitPageTests extends SeleniumBase {
 
+    private final String localUrl = "/length/meters-to-feet.htm";
     @Test
     public void testMetersToFeet() {
         HomePage homePage = new HomePage(getDriver());
-        homePage.openHomePage();
+        homePage.openHomePage(localUrl);
         MetersToFeetPage metersPage = new MetersToFeetPage(getDriver());
         metersPage.enterMeters(Config.getProperty("METER_TO_CONVERT"));
         String result = metersPage.getFeetResult();

@@ -7,10 +7,11 @@ import org.testng.annotations.Test;
 
 public class OuncesToGramsPageTests extends SeleniumBase {
 
+    private final String localUrl = "weight/ounces-to-grams.htm";
     @Test
     public void testOuncesToGrams() {
         HomePage homePage = new HomePage(getDriver());
-        homePage.openHomePage();
+        homePage.openHomePage(localUrl);
         OuncesToGramsPage ouncesPage = new OuncesToGramsPage(getDriver());
         ouncesPage.enterOunces(Config.getProperty("OCUNIT_TO_CONVERT"));
         String result = ouncesPage.getGramsResult();
