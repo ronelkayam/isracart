@@ -8,15 +8,15 @@ public class MetersToFeetPage {
 
     private WebDriver driver;
 
-    private By metersInput = By.id("meters");
-    private By feetOutput = By.id("feet");
+    private String metersInput = "singleArg";
+    private By feetOutput = By.id("answerDisplay");
 
     public MetersToFeetPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void enterMeters(String meters) {
-        WebElement inputField = driver.findElement(metersInput);
+        WebElement inputField = driver.findElement(By.className(metersInput));
         inputField.clear();
         inputField.sendKeys(meters);
     }

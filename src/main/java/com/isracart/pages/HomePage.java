@@ -9,13 +9,13 @@ public class HomePage {
     Config config = new Config();
     WebDriver driver;
 
-    private final String URL = config.getProperty("BASE_URL_METRIC");
+    private final String BASE_URL = config.getProperty("BASE_URL_METRIC");
 
     public HomePage(WebDriver driver){
         this.driver = driver;
     }
 
-    public void openHomePage(){
-        driver.get(URL);
+    public void openHomePage(String url){
+        driver.get(BASE_URL + url);
     }
 }

@@ -1,6 +1,7 @@
 package com.isracart.common;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,7 +16,7 @@ public class SeleniumBase {
     public static WebDriver getDriver() {
         if (driver == null) {
                     System.out.println("Starting Test...");
-                    WebDriverManager.chromedriver().setup();
+                    WebDriverManager.chromedriver().driverVersion("131.0.6778.205").setup();
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--start-maximized");
                     options.addArguments("--remote-allow-origins=*");
@@ -25,6 +26,7 @@ public class SeleniumBase {
     }
 
 
+    @AfterAll
     public static void closeDriver() {
         if (driver != null) {
             driver.quit();
